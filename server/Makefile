@@ -1,7 +1,7 @@
 # Go parameters
 GOCMD=go
 GOBUILD=$(GOCMD) build
-BINARY_NAME=client_binary
+BINARY_NAME=server_binary
 BINARY_UNIX=$(BINARY_NAME)_unix
 
 build-linux:

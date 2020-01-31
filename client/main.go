@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"log"
+	"fmt"
 	"time"
 
 	pb "github.com/kubernetes-playgrounds/kubernetes-service-discovery-grpc/IDL"
@@ -15,10 +15,10 @@ const (
 
 func main() {
 	// Set up a connection to the server.
-	var url = "localhost"
+	var url = "0.0.0.0"
 	conn, err := grpc.Dial(url+port, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
-		log.Fatalf("did not connect: %v", err)
+		fmt.Println(err.Error())
 	}
 	defer conn.Close()
 	c := pb.NewGreeterClient(conn)
@@ -30,9 +30,9 @@ func main() {
 		defer cancel()
 		r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
 		if err != nil {
-			log.Fatalf("could not greet: %v", err)
+			fmt.Println(err.Error())
 		}
-		log.Printf("Greeting: %s", r.GetMessage())
+		fmt.Println("Greeting: ", r.GetMessage())
 
 		time.Sleep(5 * time.Second)
 	}
