@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
 	"time"
 
 	pb "github.com/kubernetes-playgrounds/kubernetes-service-discovery-grpc/IDL"
@@ -16,6 +17,9 @@ const (
 func main() {
 	// Set up a connection to the server.
 	var url = "0.0.0.0"
+	if os.Getenv("DEPLOYMENT") == "PRODUCTION" {
+		url = "server-grpc-svc"
+	}
 	conn, err := grpc.Dial(url+port, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		fmt.Println(err.Error())

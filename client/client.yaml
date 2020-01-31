@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-grpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-grpc
+  template:
+    metadata:
+      labels:
+        app: client-grpc
+    spec:
+      containers:
+        - name: client-grpc
+          image: guanw0826/kubernetes-service-discovery-grpc-client:latest
+          env:
+            - name: DEPLOYMENT
+              value: PRODUCTION
