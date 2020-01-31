@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/guanw/kubernetes-service-discovery-grpc/IDL"
+	pb "github.com/kubernetes-playgrounds/kubernetes-service-discovery-grpc/IDL"
 	"google.golang.org/grpc"
 )
 
